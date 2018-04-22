@@ -154,7 +154,7 @@ public class HybernationSystem : NetworkBehaviour
 
     private void EnableHybernation()
     {
-        gameObject.GetComponent<UIManager>().enabled = false;
+        gameObject.GetComponent<UseTeleport>().enabled = false;
         gameObject.GetComponent<ShootAbility>().enabled = false;
         gameObject.GetComponent<PlayerActor>().enabled = false;
         gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
@@ -165,7 +165,7 @@ public class HybernationSystem : NetworkBehaviour
 
     private void DisableHybernation()
     {
-        gameObject.GetComponent<UIManager>().enabled = true;
+        gameObject.GetComponent<UseTeleport>().enabled = true;
         gameObject.GetComponent<ShootAbility>().enabled = true;
         gameObject.GetComponent<PlayerActor>().enabled = true;
         gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;

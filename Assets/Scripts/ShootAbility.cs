@@ -47,7 +47,7 @@ public class ShootAbility : NetworkBehaviour {
     private Vector3 targetDir;
 
     //used to shoot bullet in onclick function
-    private bool shootBool = false;
+    private static bool shootBool = false;
 
     //time to heal player after he stunned
     public float timeForHeal = 7.0f;
@@ -102,9 +102,11 @@ public class ShootAbility : NetworkBehaviour {
  
     void Update()
     {
-        if (!gameObject.GetComponent<PlayerInfo>().IsTrueLocalPlayer())
+        if (!GetComponent<PlayerInfo>().IsTrueLocalPlayer()
+            || !UseTeleport.initializeTrigger)
         {
             return;
+
         }
 
 
@@ -128,7 +130,6 @@ public class ShootAbility : NetworkBehaviour {
 			Cmd_Shoot ();
 		}
 
-        Debug.Log(targeted);
         
         //take a mouse position at a moment
         RaycastHit hit;
@@ -247,15 +248,7 @@ public class ShootAbility : NetworkBehaviour {
             shootPoints += 1;
         }
 
-        if (lockedPlayer != null)
-        {
-            
-            Logger.LogAction("Shoot", gameObject, lockedPlayer);
-        }
-        else
-        {
-            Logger.LogAction("Missed", gameObject, null);
-        }
+        
 
 
         this.gameObject.GetComponent<AudioSync>().PlaySound(6);
@@ -272,11 +265,6 @@ public class ShootAbility : NetworkBehaviour {
         Destroy(obj, 2.0f);
 
 
-        //Set bools 
-        shootBool = false;
-        locked = false;
-        lockedPlayer = null;
-        hasAmmo = false;
         //Turn light OFF
         CmdTurnLightOFF();
         //Set indicator to blue
@@ -289,6 +277,15 @@ public class ShootAbility : NetworkBehaviour {
     [ClientRpc]
 	void RpcShoot()
     {
+        if (lockedPlayer != null)
+        {
+
+            Logger.LogAction("Shoot", gameObject, lockedPlayer);
+        }
+        else
+        {
+            Logger.LogAction("Missed", gameObject, null);
+        }
 
         //Set bools 
         shootBool = false;

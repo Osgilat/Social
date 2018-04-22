@@ -264,13 +264,10 @@ public class GameManagerTeleports : NetworkBehaviour {
 
         }
 
-        if (timeLeft < 0
-           || notStunnedPlayers <= 1 
-           || notStunnedPlayers != 0
-           && playersWithAmmo == 0
-             )
+        if (timeLeft < 0 || notStunnedPlayers <= 1  ||
+           (notStunnedPlayers != 0 && playersWithAmmo == 0))
         {
-            GameManagerTeleports.escaped = true;
+            escaped = true;
         }
 
         foreach (GameObject player in players)

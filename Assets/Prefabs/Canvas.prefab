@@ -3383,7 +3383,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114596395330635564, guid: 6db82357c8ec48740b354b8069563bfa,
           type: 2}
-        m_MethodName: ClickToShoot
+        m_MethodName: ShootOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3395,7 +3395,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 114602863818364356, guid: 342c2db4eb07f9540ba14eb41a79f127,
           type: 2}
-        m_MethodName: ClickToShoot
+        m_MethodName: ShootOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3407,7 +3407,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 114605774735794568, guid: d51dc6bc0680fbc4a9e4d96c30716c60,
           type: 2}
-        m_MethodName: ClickToShoot
+        m_MethodName: ShootOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3419,7 +3419,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 114605774735794568, guid: 01680aafde9c191419051db260ad6ae8,
           type: 2}
-        m_MethodName: ClickToShoot
+        m_MethodName: ShootOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

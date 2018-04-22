@@ -68,7 +68,6 @@ public class HealAbility : NetworkBehaviour
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
             {
 
-                //if greetButton active and clicked on a player
                 if (healTrigger && hit.transform.CompareTag("Player")
                     && hit.transform.gameObject.GetComponent<ShootAbility>().stunned
                     && hit.transform.gameObject != gameObject
