@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/_Scenes/AndroidStart.unity
+    guid: 6d53e231a9de1b24f889adad4d5ac47e
+  - enabled: 1
+    path: Assets/_Scenes/Lobby.unity
+    guid: b99e86074b90d9a44b909494996400c4
+  - enabled: 1
+    path: Assets/_Scenes/Passengers.unity
+    guid: 66ebd5a6f4a85ad41a27aaa29b2e31a9
+  - enabled: 1
+    path: Assets/_Scenes/Teleports.unity
+    guid: 644fb50c294d6934db8c34e5ccf91e65
+  - enabled: 1
+    path: Assets/_Scenes/ThreeShooters.unity
+    guid: b48fc4fb91dca8a4aa5dacfdfc9f8a05
+  - enabled: 0
+    path: Assets/_Scenes/TeleportsAR.unity
+    guid: 8e83629f7eb5f89408e13c3fa28c210d
