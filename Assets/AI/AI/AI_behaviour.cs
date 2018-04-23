@@ -854,7 +854,7 @@ public class AI_behaviour : MonoBehaviour {
         } 
         else if (shootersScene)
         {
-            allActions = new Actions[7];
+            allActions = new Actions[6];
 
             allActions[0] = new Actions("Ask", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Normal");
             allActions[1] = new Actions("Kick", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Normal");
@@ -862,11 +862,11 @@ public class AI_behaviour : MonoBehaviour {
             allActions[3] = new Actions("Target", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Normal");
             allActions[4] = new Actions("Shoot", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Normal");
             allActions[5] = new Actions("Heal", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Stun");
-            allActions[6] = new Actions("Missed", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Normal");
+            //allActions[6] = new Actions("Missed", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Normal");
         } 
         else if (passengersScene)
         {
-            allActions = new Actions[9];
+            allActions = new Actions[8];
 
             allActions[0] = new Actions("Ask", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Normal");
             allActions[1] = new Actions("Kick", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Normal");
@@ -874,9 +874,9 @@ public class AI_behaviour : MonoBehaviour {
             allActions[3] = new Actions("Target", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Normal");
             allActions[4] = new Actions("Shoot", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Normal");
             allActions[5] = new Actions("Heal", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Stun");
-            allActions[6] = new Actions("Missed", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Normal");
-            allActions[7] = new Actions("Hybernate", 1, new Vector2(0.10f, 0.15f), "Tower", "Tower", "Normal", "Normal");
-            allActions[8] = new Actions("WakeUp", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Hybernate");
+           // allActions[6] = new Actions("Missed", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Normal");
+            allActions[6] = new Actions("Hybernate", 1, new Vector2(0.10f, 0.15f), "Tower", "Tower", "Normal", "Normal");
+            allActions[7] = new Actions("WakeUp", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Hybernate");
 
             allStaticActions = new Actions[3];
 
