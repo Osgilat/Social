@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 114505868958011140}
   - component: {fileID: 114751486134925724}
   - component: {fileID: 114378942327345964}
+  - component: {fileID: 114452809150486598}
   m_Layer: 0
   m_Name: PlayerMod_Damaged
   m_TagString: DamagedBot
@@ -1734,7 +1735,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012744456312}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20a616c25cb7e3c49ba9a1b32ddc75f7, type: 3}
   m_Name: 
@@ -1755,7 +1756,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healOnceBool: 0
-  healTrigger: 0
   targetToHeal: {fileID: 0}
 --- !u!114 &114344402174306904
 MonoBehaviour:
@@ -1787,6 +1787,19 @@ MonoBehaviour:
   wakeTrigger: 0
   thankTrigger: 0
   saveTrigger: 0
+--- !u!114 &114452809150486598
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012744456312}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae501df1afe0d8042bc86c631d2a495f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useMoralScheme: 0
+  blockSave: 0
 --- !u!114 &114505868958011140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1801,6 +1814,9 @@ MonoBehaviour:
   timesSaved: 0
   pos_1: {fileID: 0}
   pos_2: {fileID: 0}
+  teleportScene: 0
+  shootersScene: 0
+  passengersScene: 0
 --- !u!114 &114605774735794568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1833,7 +1849,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012744456312}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3166df1611272e74587fa3382b1ca251, type: 3}
   m_Name: 
@@ -1867,7 +1883,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 1000
   kickEffect: {fileID: 0}
-  wakeUp: 0
 --- !u!124 &124000013453898274
 Behaviour:
   m_ObjectHideFlags: 1

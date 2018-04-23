@@ -103,7 +103,7 @@ public class ShootAbility : NetworkBehaviour {
     void Update()
     {
         if (!GetComponent<PlayerInfo>().IsTrueLocalPlayer()
-            || !UseTeleport.initializeTrigger)
+            || !UseTeleport.initializeTrigger || GetComponent<UseTeleport>().teleportScene)
         {
             return;
 
@@ -251,7 +251,7 @@ public class ShootAbility : NetworkBehaviour {
         
 
 
-        this.gameObject.GetComponent<AudioSync>().PlaySound(6);
+        this.gameObject.GetComponent<AudioSync>().PlaySound(15);
         GameObject obj = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
 
         // setup bullet component

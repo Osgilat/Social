@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager: NetworkBehaviour {
 
@@ -26,7 +27,7 @@ public class UIManager: NetworkBehaviour {
     public GameObject announcementText;
     public GameObject canvas;
 
-    public void DeactivateAllButtons()
+    public void DisableAllButtons()
     {
         askButton.SetActive(false);
         kickButton.SetActive(false);
@@ -46,13 +47,37 @@ public class UIManager: NetworkBehaviour {
 
     }
 
-    public void ChangeButtonsOnTower()
+    public void ChangeButtonsAfterFix()
     {
-        StartCoroutine(WaitForButtonActivation());
+        askButton.SetActive(false);
+        kickButton.SetActive(false);
+        activateButton.SetActive(false);
+        takeOffButton.SetActive(false);
+        saveButton.SetActive(false);
+        fixButton.SetActive(false);
+        healButton.SetActive(false);
+        hybernateButton.SetActive(true);
+        wakeUpButton.SetActive(false);
+        targetButton.SetActive(false);
+        thankButton.SetActive(false);
+        activateGeneratorButton.SetActive(true);
+        escapeButton.SetActive(false);
 
     }
 
-    public IEnumerator WaitForButtonActivation()
+    public void ChangeTowerTP()
+    {
+        StartCoroutine(WaitForButtonActivationTP());
+
+    }
+
+    public void ChangeTowerPS()
+    {
+        StartCoroutine(WaitForButtonActivationPS());
+
+    }
+
+    public IEnumerator WaitForButtonActivationTP()
     {
         yield return new WaitForSeconds(1);
 
@@ -62,6 +87,20 @@ public class UIManager: NetworkBehaviour {
         kickButton.SetActive(false);
         saveButton.SetActive(true);
         escapeButton.SetActive(true);
+
+    }
+
+    public IEnumerator WaitForButtonActivationPS()
+    {
+        yield return new WaitForSeconds(1);
+
+
+        askButton.SetActive(false);
+        thankButton.SetActive(false);
+        kickButton.SetActive(false);
+        saveButton.SetActive(true);
+        fixButton.SetActive(true);
+        wakeUpButton.SetActive(false);
 
     }
 
@@ -127,7 +166,7 @@ public class UIManager: NetworkBehaviour {
     // Use this for initialization
     void Start ()
     {
-        Invoke("InstantiateButtons", 1);
+        Invoke("InstantiateButtons", 2f);
     }
 
     
@@ -162,8 +201,7 @@ public class UIManager: NetworkBehaviour {
 
     
         
-        switch (GameObject.FindGameObjectWithTag("MainCamera").
-            GetComponent<SceneInfo>().sceneName)
+        switch (SceneManager.GetActiveScene().name)
         {
             case "Teleports":
                 //Deactivate all buttons 
@@ -229,6 +267,7 @@ public class UIManager: NetworkBehaviour {
 
                 break;
             default:
+
                 Debug.Log("WrongScene");
                 break;
         }

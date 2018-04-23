@@ -222,6 +222,10 @@ MonoBehaviour:
   movementSpeed: 0
   clips:
   - {fileID: 8300000, guid: 49e5be28342791f47ae8ec304be50e89, type: 3}
+  - {fileID: 8300000, guid: ea08a6c85d61fa54b850f693e8237670, type: 3}
+  - {fileID: 8300000, guid: 45382ccc776b028468b296b1ed79f7a2, type: 3}
   teleportScene: 0
   shootersScene: 0
   passengersScene: 0
+  playersWithAmmo: 0
+  notStunnedPlayers: 0

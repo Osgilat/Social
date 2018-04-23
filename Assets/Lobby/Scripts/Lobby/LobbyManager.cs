@@ -80,6 +80,7 @@ namespace Prototype.NetworkLobby
                     //Damaged ai behavior
                     GameObject aiPlayer = null;
                     aiPlayer = Instantiate(playerDamaged, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+                    aiPlayer.GetComponent<DamagedBotBehavior>().enabled = true;
                     NetworkServer.Spawn(aiPlayer);
                 }
 

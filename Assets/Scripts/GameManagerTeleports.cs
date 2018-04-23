@@ -72,6 +72,7 @@ public class GameManagerTeleports : NetworkBehaviour {
 
     void Initialization()
     {
+        
 
         switch (SceneManager.GetActiveScene().name)
         {
@@ -150,15 +151,12 @@ public class GameManagerTeleports : NetworkBehaviour {
         */
 
 
-        foreach (GameObject player in players)
-        {
-            player.GetComponent<HybernationSystem>().CmdHybernate(player);
-        }
-
+        /*
         players[notHybPlayer].GetComponent<HybernationSystem>().CmdDisableHybernate(players[notHybPlayer]);
         notHybPlayer++;
         if (notHybPlayer > 3)
         { notHybPlayer = 0; }
+    */
     }
 
 
@@ -185,6 +183,8 @@ public class GameManagerTeleports : NetworkBehaviour {
             Application.Quit();
         }
 
+        
+
         if(shootersScene)
         HandleShootersEnding();
 
@@ -202,7 +202,8 @@ public class GameManagerTeleports : NetworkBehaviour {
 
     private void HandlePassengersEnding()
     {
-        if (generator.GetComponent<Generator>().repaired && !damagedBot.GetComponent<ShootAbility>().stunned)
+        if (generator.GetComponent<Generator>().repaired
+            && !damagedBot.GetComponent<ShootAbility>().stunned)
         {
             damagedBot.GetComponent<HybernationSystem>().hybernated = false;
             damagedBot.GetComponent<ShootAbility>().stunned = true;
@@ -219,19 +220,22 @@ public class GameManagerTeleports : NetworkBehaviour {
         {
 
 
-            if (!player.GetComponent<HybernationSystem>().hybernationSphere.GetComponent<MeshRenderer>().enabled && generator.GetComponent<Generator>().repaired)
+            if (!player.GetComponent<HybernationSystem>()
+                .hybernationSphere.GetComponent<MeshRenderer>().enabled 
+                && generator.GetComponent<Generator>().repaired)
             {
                 playersInHybernation += 1;
             }
         }
 
-        if (timeLeft < 0 || generator.GetComponent<Generator>().active
-
-             )
+        if (timeLeft < 0 || generator.GetComponent<Generator>().active)
         {
             GameManagerTeleports.escaped = true;
         }
     }
+
+    public int playersWithAmmo = 0;
+    public int notStunnedPlayers = 0;
 
     private void HandleShootersEnding()
     {
@@ -246,8 +250,8 @@ public class GameManagerTeleports : NetworkBehaviour {
                         }
                         */
 
-        int playersWithAmmo = 0;
-        int notStunnedPlayers = 0;
+        playersWithAmmo = 0;
+        notStunnedPlayers = 0;
 
         foreach (GameObject player in players)
         {
@@ -438,7 +442,11 @@ public class GameManagerTeleports : NetworkBehaviour {
             TeleportVisuals();
 
         if (passengersScene)
-            PassengersVisuals();
+        {
+
+            StartCoroutine(PassengersVisuals());
+        }
+            
 
 
 
@@ -454,7 +462,7 @@ public class GameManagerTeleports : NetworkBehaviour {
             ReinitializeTriggers(players[i]);
 
 
-            if (players[i].GetComponent<ShootAbility>().alive)
+            if (!players[i].GetComponent<ShootAbility>().stunned)
             {
                 players[i].GetComponent<ShootAbility>().shootPoints += 1;
             }
@@ -469,7 +477,7 @@ public class GameManagerTeleports : NetworkBehaviour {
             players[i].GetComponent<UnityEngine.AI.NavMeshAgent>().ResetPath();
 
             //deactivate all buttons 
-            PlayerInfo.UIManager.DeactivateAllButtons();
+            PlayerInfo.UIManager.DisableAllButtons();
 
             RepaintIndicator(players[i]);
 
@@ -493,6 +501,7 @@ public class GameManagerTeleports : NetworkBehaviour {
             players[i].GetComponent<ShootAbility>().timeForHeal = 7.0f;
         }
 
+        if(teleportScene)
         RestoreVisuals();
 
         if(passengersScene)
@@ -532,7 +541,7 @@ public class GameManagerTeleports : NetworkBehaviour {
         ParticleSystem.MainModule s = damagedBot.GetComponent<ShootAbility>().indicator.GetComponent<ParticleSystem>().main;
         s.startColor = new ParticleSystem.MinMaxGradient(new Color(1, 0, 0, .5f));
 
-        damagedBot.GetComponent<UseTeleport>().Cmd_TransformPlayer(damagedBot, new Vector3(0, 0, 0), Quaternion.identity, true);
+        damagedBot.GetComponent<UseTeleport>().CmdTransformPlayer(damagedBot, new Vector3(0, 0, 0), Quaternion.identity, true);
 
         damagedBot.GetComponent<ShootAbility>().hasAmmo = true;
         damagedBot.GetComponent<ShootAbility>().locked = false;
@@ -577,6 +586,7 @@ public class GameManagerTeleports : NetworkBehaviour {
 
     private IEnumerator PassengersVisuals()
     {
+
         if (!generator.GetComponent<Generator>().repaired)
         {
 
@@ -640,16 +650,18 @@ public class GameManagerTeleports : NetworkBehaviour {
             source.PlayOneShot(clips[1]);
         }
 
+        /*
         foreach (GameObject player in players)
         {
             player.GetComponent<HybernationSystem>().CmdHybernate(player);
         }
+        */
 
-
+        /*
         players[notHybPlayer].GetComponent<HybernationSystem>().CmdDisableHybernate(players[notHybPlayer]);
         notHybPlayer++;
         if (notHybPlayer > 3) { notHybPlayer = 0; }
-
+        */
 
         generator.GetComponent<Generator>().repaired = false;
         generator.GetComponent<Generator>().repairPoints = 2;
@@ -698,7 +710,7 @@ public class GameManagerTeleports : NetworkBehaviour {
         UseTeleport.saveTrigger = false;
         UseTeleport.escapeTrigger = false;
         UseTeleport.trigger = false;
-        FixingGenerator.hasFixCharge = true;
+        FixAbility.hasFixCharge = true;
         escaped = false;
     }
 
@@ -713,7 +725,7 @@ public class GameManagerTeleports : NetworkBehaviour {
 		//Block buttons if there are 2 saved players
         if(teleportScene)
 		if (m_TriggerList.ToArray ().Length > 3) {
-            PlayerInfo.UIManager.DeactivateAllButtons();
+            PlayerInfo.UIManager.DisableAllButtons();
 		}
 
 

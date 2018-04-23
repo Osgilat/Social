@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 114854514947992736}
   - component: {fileID: 114435557410036382}
   - component: {fileID: 114511119709612076}
+  - component: {fileID: 114072621906332160}
   m_Layer: 0
   m_Name: PlayerMod_C
   m_TagString: Player
@@ -1162,7 +1163,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 79ce4113c68babd4ea754fdbc94db3e9, type: 2}
+  - {fileID: 2100000, guid: 70cc334ccba0dd64a83565c3d1acd426, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1813,6 +1814,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 336af1baee7da294aafd95321e9b29fe, type: 3}
   - {fileID: 8300000, guid: ece4a71358e5c9147a21bb6a3a61a15a, type: 3}
   - {fileID: 8300000, guid: 5a44a813a8de98a4993e9fb45baf9336, type: 3}
+  - {fileID: 8300000, guid: 46aa0c1ffa0295d449d820d54a34c589, type: 3}
 --- !u!114 &114000012964342442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1899,6 +1901,17 @@ MonoBehaviour:
   hybernationEffect: {fileID: 198824606650304458}
   hybernationPoints: 0
   hybernated: 0
+--- !u!114 &114072621906332160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012744456312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 231a00a512b370a44a01a3bf6f0d4f93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114343410828730224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1911,7 +1924,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healOnceBool: 0
-  healTrigger: 0
   targetToHeal: {fileID: 0}
 --- !u!114 &114344402174306904
 MonoBehaviour:
@@ -2011,7 +2023,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 1000
   kickEffect: {fileID: 0}
-  wakeUp: 0
 --- !u!114 &114854514947992736
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2026,6 +2037,9 @@ MonoBehaviour:
   timesSaved: 0
   pos_1: {fileID: 1000010913082620, guid: 0ac33bc7c6a0732458a0db6b64e4771b, type: 2}
   pos_2: {fileID: 1000013168572930, guid: 0ac33bc7c6a0732458a0db6b64e4771b, type: 2}
+  teleportScene: 0
+  shootersScene: 0
+  passengersScene: 0
 --- !u!124 &124000013453898274
 Behaviour:
   m_ObjectHideFlags: 1
@@ -5598,7 +5612,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1216800487
+  randomSeed: 290235506
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -19168,7 +19182,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: -361032359
+  randomSeed: -624974119
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -22484,7 +22498,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1089973094
+  randomSeed: 1468511060
   InitialModule:
     serializedVersion: 3
     enabled: 1

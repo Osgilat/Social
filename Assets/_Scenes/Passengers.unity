@@ -123,8 +123,6 @@ GameObject:
   - component: {fileID: 199}
   - component: {fileID: 52}
   - component: {fileID: 46}
-  - component: {fileID: 44}
-  - component: {fileID: 45}
   - component: {fileID: 47}
   m_Layer: 0
   m_Name: Main Camera
@@ -133,41 +131,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &44
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 43}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fb438ad0b8379f49a274bfa973adeed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SCShader: {fileID: 4800000, guid: 43db037ba9bd2944a9d49c1919a47b0e, type: 3}
-  Speed: 4.9
-  X: 0.008
-  Y: 0.008
---- !u!114 &45
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 43}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 697583c106da9224c93fccc7cddb18d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SCShader: {fileID: 4800000, guid: d658b29263c0b634f91e0c3e2ab33459, type: 3}
-  _AlphaHexa: 1
-  ShapeFormula: 10
-  Shape: 1
-  _BorderSize: 1
-  _BorderColor: {r: 0, g: 0.2, b: 1, a: 1}
-  _SpotSize: 9.55
-  center: {x: 0, y: 0}
-  Radius: 0.81
 --- !u!114 &46
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,6 +925,11 @@ Prefab:
     - target: {fileID: 1000012405845894, guid: 9de77ec53bc2f2a4eb9664fd45050892, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224167856680999192, guid: 9de77ec53bc2f2a4eb9664fd45050892,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 31.599976
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9de77ec53bc2f2a4eb9664fd45050892, type: 2}

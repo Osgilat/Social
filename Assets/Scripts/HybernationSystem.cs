@@ -14,7 +14,7 @@ public class HybernationSystem : NetworkBehaviour
     public GameObject hybernationSphere;
     public ParticleSystem hybernationEffect;
 
-    private bool hybernateTrigger;
+    private static bool hybernateTrigger;
 
     //to check points
     [SyncVar]
@@ -24,17 +24,13 @@ public class HybernationSystem : NetworkBehaviour
     [SyncVar]
     public bool hybernated = false;
 
-    void VarChanged(bool value)
-    {
-        hybernated = value;
-        
-    }
 
     public bool isHybernated()
     {
         return hybernated;
     }
 
+    /*
     [Command]
     public void CmdRandomHybernation()
     {
@@ -56,16 +52,40 @@ public class HybernationSystem : NetworkBehaviour
     {
         players[randPlayer].GetComponent<HybernationSystem>().hybernated = false;
     }
+    */
 
     private void Update()
     {
+        if (!GetComponent<UseTeleport>().passengersScene)
+        {
+            return;
+        }
+
         if (hybernated)
         {
             EnableHybernation();
-        } else
+        }
+        else
         {
             DisableHybernation();
         }
+
+        if (!GetComponent<PlayerInfo>().IsTrueLocalPlayer())
+        {
+            return;
+        }
+        
+
+        if(GameObject.FindGameObjectWithTag("Generator")
+            .GetComponent<Generator>().repairPoints <= 0 
+            && FixAbility.inGeneratorTrigger)
+        {
+            PlayerInfo.UIManager.ChangeButtonsAfterFix();
+        }
+
+        
+
+
 
         HandleHybernation();
 
@@ -73,6 +93,8 @@ public class HybernationSystem : NetworkBehaviour
 
     private void HandleHybernation()
     {
+
+
         if (hybernateTrigger)
         {
             if (gameObject.GetComponent<HybernationSystem>().hybernationEffect.isStopped)
@@ -85,16 +107,13 @@ public class HybernationSystem : NetworkBehaviour
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+
                 if (Physics.Raycast(ray, out hit))
                 {
-
+                    Debug.Log("Hybernate " + hit.transform.gameObject);
                     //if hitted player
                     if (hit.transform.CompareTag("Player") && hit.transform.gameObject != gameObject)
                     {
-                        //Log saved 
-                        
-                        Logger.LogAction("Hybernate", gameObject, hit.transform.gameObject);
-                        
 
                         //Transform hitted player
                         GameObject[] spawnPoints = GetSpawnPoints();
@@ -102,11 +121,14 @@ public class HybernationSystem : NetworkBehaviour
                         GetComponent<UseTeleport>().RespawnPlayers(hit.transform.gameObject, spawnPoints[(UnityEngine.Random.Range(0, spawnPoints.Length))].transform.position,
                             spawnPoints[(UnityEngine.Random.Range(0, spawnPoints.Length))].transform.rotation, false);
 
+                        
                         //hit.transform.gameObject.GetComponent<HybernationSystem>().
                         CmdHybernate(hit.transform.gameObject);
 
                         gameObject.GetComponent<HybernationSystem>().hybernationEffect.Stop();
 
+                        PlayerInfo.UIManager.thankButton.GetComponent<Image>().color = Color.white;
+                        //PlayerInfo.UIManager.DisableAllButtons();
                         hybernateTrigger = false;
                     }
                 }
@@ -135,6 +157,8 @@ public class HybernationSystem : NetworkBehaviour
     public void RpcHybernate(GameObject obj)
     {
         obj.GetComponent<HybernationSystem>().hybernated = true;
+        Logger.LogAction("Hybernate", gameObject, obj);
+
     }
 
     [Command]
@@ -211,23 +235,44 @@ public class HybernationSystem : NetworkBehaviour
                     .GetComponent<GameManagerTeleports>().spawnPoints;
 
                 break;
-                /*
+                
             case "ThreeShooters":
 
                 spawnPoints = GameObject.FindGameObjectWithTag("GameManager")
-                    .GetComponent<GameManagerShooters>().spawnPoints;
+                    .GetComponent<GameManagerTeleports>().spawnPoints;
 
                 break;
             case "Passengers":
 
                 spawnPoints = GameObject.FindGameObjectWithTag("GameManager")
-                    .GetComponent<GameManagerPassengers>().spawnPoints;
+                    .GetComponent<GameManagerTeleports>().spawnPoints;
 
                 break;
-                */
+                
         }
 
         return spawnPoints;
+    }
+
+    public void AI_Hybernate(GameObject target)
+    {
+        Logger.LogAction("Hybernate", gameObject, target);
+
+        /*
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if (player.GetComponent<Behaviour>().enabled)
+                player.GetComponent<Behaviour>().ListenerActionAvatar("Hybernated", this.gameObject, target.transform.gameObject);
+        }
+        */
+        //Transform hitted player
+        GameObject[] spawnPoints = GetSpawnPoints();
+
+        GetComponent<UseTeleport>().RespawnPlayers(target.transform.gameObject, spawnPoints[(UnityEngine.Random.Range(0, spawnPoints.Length))].transform.position,
+            spawnPoints[(UnityEngine.Random.Range(0, spawnPoints.Length))].transform.rotation, false);
+
+        //hit.transform.gameObject.GetComponent<HybernationSystem>().
+        CmdHybernate(target.transform.gameObject);
     }
 
 }

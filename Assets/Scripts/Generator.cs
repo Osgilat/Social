@@ -73,7 +73,7 @@ public class Generator : NetworkBehaviour
     {
         if(other.gameObject == PlayerInfo.localPlayerGameObject)
         {
-            FixingGenerator.inGeneratorTrigger = true;
+            FixAbility.inGeneratorTrigger = true;
         }
     }
 
@@ -81,7 +81,7 @@ public class Generator : NetworkBehaviour
     {
         if (other.gameObject == PlayerInfo.localPlayerGameObject)
         {
-            FixingGenerator.inGeneratorTrigger = false;
+            FixAbility.inGeneratorTrigger = false;
         }
     }
 }

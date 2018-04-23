@@ -13,25 +13,28 @@ public class SceneInfo : NetworkBehaviour {
 
     void Start (){
 		if (isServer)
-			sessionID = UnityEngine.Random.Range (0, 100000).ToString();
-        sceneName = SceneManager.GetActiveScene().name;
-
-        switch (sceneName)
         {
-            case "Teleports":
-                sessionID = "TP" + sessionID;
-                break;
-            case "ThreeShooters":
-                sessionID = "SH" + sessionID;
-                break;
-            case "Passengers":
-                sessionID = "PS" + sessionID;
-                break;
-            default:
-                sessionID = "WrongScene";
-                break;
+            sessionID = UnityEngine.Random.Range(0, 100000).ToString();
+            sceneName = SceneManager.GetActiveScene().name;
+
+            switch (sceneName)
+            {
+                case "Teleports":
+                    sessionID = "TP" + sessionID;
+                    break;
+                case "ThreeShooters":
+                    sessionID = "SH" + sessionID;
+                    break;
+                case "Passengers":
+                    sessionID = "PS" + sessionID;
+                    break;
+                default:
+                    sessionID = "WrongScene";
+                    break;
+            }
         }
         
+
     }
 
 	void OnGUI()

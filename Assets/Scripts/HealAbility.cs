@@ -9,7 +9,7 @@ public class HealAbility : NetworkBehaviour
     public bool healOnceBool = false;
     private const float playerSpeed = 1.5f;
     private const float timeForHeal = 7.0f;
-    public bool healTrigger = false;
+    public static bool healTrigger = false;
     public GameObject targetToHeal = null;
 
 
@@ -17,7 +17,7 @@ public class HealAbility : NetworkBehaviour
     public void ClickToHeal()
     {
 
-        if (!gameObject.GetComponent<PlayerInfo>().IsTrueLocalPlayer())
+        if (!GetComponent<PlayerInfo>().IsTrueLocalPlayer())
         {
             return;
         }
@@ -48,11 +48,13 @@ public class HealAbility : NetworkBehaviour
     void FixedUpdate()
     {
         //Control only by local player
-        if (!isLocalPlayer)
+        if (!GetComponent<PlayerInfo>().IsTrueLocalPlayer()
+            || !UseTeleport.initializeTrigger)
         {
             return;
+
         }
-        
+
 
         if (healOnceBool)
         {

@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 114013253572711604}
   - component: {fileID: 114767939457798426}
   - component: {fileID: 114124803580619106}
+  - component: {fileID: 114382199701862266}
   m_Layer: 0
   m_Name: PlayerMod_B
   m_TagString: Player
@@ -1191,7 +1192,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 79ce4113c68babd4ea754fdbc94db3e9, type: 2}
+  - {fileID: 2100000, guid: 70cc334ccba0dd64a83565c3d1acd426, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1824,6 +1825,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 336af1baee7da294aafd95321e9b29fe, type: 3}
   - {fileID: 8300000, guid: ece4a71358e5c9147a21bb6a3a61a15a, type: 3}
   - {fileID: 8300000, guid: 5a44a813a8de98a4993e9fb45baf9336, type: 3}
+  - {fileID: 8300000, guid: 46aa0c1ffa0295d449d820d54a34c589, type: 3}
 --- !u!114 &114000011740613006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1963,6 +1965,9 @@ MonoBehaviour:
   timesSaved: 0
   pos_1: {fileID: 1000010913082620, guid: 0ac33bc7c6a0732458a0db6b64e4771b, type: 2}
   pos_2: {fileID: 1000013168572930, guid: 0ac33bc7c6a0732458a0db6b64e4771b, type: 2}
+  teleportScene: 0
+  shootersScene: 0
+  passengersScene: 0
 --- !u!114 &114124803580619106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1993,6 +1998,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetGameobject: {fileID: 0}
+--- !u!114 &114382199701862266
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013389839716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 231a00a512b370a44a01a3bf6f0d4f93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114602863818364356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2032,7 +2048,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 1000
   kickEffect: {fileID: 0}
-  wakeUp: 0
 --- !u!114 &114713667936619454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2074,7 +2089,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healOnceBool: 0
-  healTrigger: 0
   targetToHeal: {fileID: 0}
 --- !u!114 &114982134236461202
 MonoBehaviour:

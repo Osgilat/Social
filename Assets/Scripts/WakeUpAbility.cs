@@ -10,7 +10,7 @@ public class WakeUpAbility : NetworkBehaviour
     public ParticleSystem kickEffect;
 
     //Used to control button's behavior
-    public bool wakeUp = false; 
+    public static bool wakeUp = false; 
 
     private Vector3 targetDir;
 
@@ -25,7 +25,7 @@ public class WakeUpAbility : NetworkBehaviour
 
     public void WakeUpOnClick()
     {
-        if (!gameObject.GetComponent<PlayerInfo>().IsTrueLocalPlayer())
+        if (!GetComponent<PlayerInfo>().IsTrueLocalPlayer())
         {
             return;
         }
@@ -60,7 +60,7 @@ public class WakeUpAbility : NetworkBehaviour
 
     // Update is called once per frame
     void Update () {
-        if (!isLocalPlayer)
+        if (!GetComponent<PlayerInfo>().IsTrueLocalPlayer())
         {
             return;
         }

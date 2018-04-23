@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.XR;
 
 public class SessionData : MonoBehaviour {
 
@@ -19,14 +19,19 @@ public class SessionData : MonoBehaviour {
     private string tempScene = "";
 
     public GameObject menu;
-
-   
+    
+    private void Start()
+    {
+       //VuforiaBehaviour.Instance.enabled = false;
+       // TrackerManager.Instance.GetTracker<ObjectTracker>().Stop();
+       XRSettings.enabled = false;
+    }
 
     // Update is called once per frame
     void Update ()
     {
-
         
+
         bool maySaveSceneName = sessionToggleGroup != null &&
             sessionToggleGroup.ActiveToggles().FirstOrDefault() != null;
 

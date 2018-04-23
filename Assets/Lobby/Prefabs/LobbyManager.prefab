@@ -3098,6 +3098,7 @@ MonoBehaviour:
   - {fileID: 1000012744456312, guid: 01680aafde9c191419051db260ad6ae8, type: 2}
   - {fileID: 1000012744456312, guid: faa77519545acf34593ddf49bac15826, type: 2}
   - {fileID: 1646945561745830, guid: 9649e694501d9584498f567f613e517c, type: 2}
+  - {fileID: 1658188771566300, guid: c4b92a27278a9ab409c5574609b8a33a, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -3154,9 +3155,9 @@ MonoBehaviour:
   isNetworkActive: 0
   matchMaker: {fileID: 0}
   m_ShowLobbyGUI: 0
-  m_MaxPlayers: 3
+  m_MaxPlayers: 4
   m_MaxPlayersPerConnection: 1
-  m_MinPlayers: 3
+  m_MinPlayers: 4
   m_LobbyPlayerPrefab: {fileID: 11487034, guid: ad727d7e1462ecc4f83c898ecc501997,
     type: 2}
   m_GamePlayerPrefab: {fileID: 1000011618811342, guid: 6db82357c8ec48740b354b8069563bfa,

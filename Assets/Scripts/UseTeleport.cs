@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
-
+using UnityEngine.SceneManagement;
 
 
 public class UseTeleport : NetworkBehaviour
@@ -48,9 +48,29 @@ public class UseTeleport : NetworkBehaviour
 
     }
 
+    public bool teleportScene = false;
+    public bool shootersScene = false;
+    public bool passengersScene = false;
+
     public void SetInitializeTrigger()
     {
         initializeTrigger = true;
+
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "Teleports":
+                teleportScene = true;
+                break;
+            case "ThreeShooters":
+                shootersScene = true;
+                break;
+            case "Passengers":
+                passengersScene = true;
+                break;
+            default:
+
+                break;
+        }
     }
 
     private void HandleKeyboard()
@@ -81,7 +101,7 @@ public class UseTeleport : NetworkBehaviour
         if (PlayerInfo.UIManager.takeOffButton.activeSelf && Input.GetKeyDown(KeyCode.Alpha2))
         {
             //Transform player to first position
-            Cmd_TransformPlayer(this.transform.gameObject, pos_1.transform.position, transform.rotation, false);
+            CmdTransformPlayer(this.transform.gameObject, pos_1.transform.position, transform.rotation, false);
         }
         else
         if (PlayerInfo.UIManager.saveButton.activeSelf)
@@ -91,13 +111,13 @@ public class UseTeleport : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 //Transform hitted player
-                Cmd_TransformPlayer(PlayerInfo.localPlayerGameObject.GetComponent<PlayerInfo>().playerToTarget1, 
+                CmdTransformPlayer(PlayerInfo.localPlayerGameObject.GetComponent<PlayerInfo>().playerToTarget1, 
                     pos_2.transform.position, transform.rotation, false);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 //Transform hitted player
-                Cmd_TransformPlayer(PlayerInfo.localPlayerGameObject.GetComponent<PlayerInfo>().playerToTarget2,
+                CmdTransformPlayer(PlayerInfo.localPlayerGameObject.GetComponent<PlayerInfo>().playerToTarget2,
                     pos_2.transform.position, transform.rotation, false);
             }
 
@@ -139,7 +159,7 @@ public class UseTeleport : NetworkBehaviour
             trigger = true;
 
             //Transform player to first position
-            Cmd_TransformPlayer(gameObject, pos_1.transform.position, pos_1.transform.rotation, false);
+            CmdTransformPlayer(gameObject, pos_1.transform.position, pos_1.transform.rotation, false);
         }
 
         //if save button pushed
@@ -160,7 +180,7 @@ public class UseTeleport : NetworkBehaviour
                         && !hit.transform.gameObject.GetComponent<HybernationSystem>().isHybernated())
                     {
                         //Transform hitted player
-                        Cmd_TransformPlayer(hit.transform.gameObject, pos_2.transform.position, pos_2.transform.rotation, false);
+                        CmdTransformPlayer(hit.transform.gameObject, pos_2.transform.position, pos_2.transform.rotation, false);
 
 
                         // TODO: Triggers handling
@@ -296,37 +316,32 @@ public class UseTeleport : NetworkBehaviour
             audioSync.PlayLocalSound(9);
         }
         */
-        Cmd_TransformPlayer(obj, position, rotation, roundEnd);
+        CmdTransformPlayer(obj, position, rotation, roundEnd);
     }
 
 
 	//Transform player on a server
 	[Command]
-	public void Cmd_TransformPlayer(GameObject obj, Vector3 position, Quaternion rotation, bool roundEnd)
+	public void CmdTransformPlayer(GameObject obj, Vector3 position, Quaternion rotation, bool roundEnd)
     {
-        
-        
-        
-
-
 
         //Call function on clients
-        Rpc_TransformPlayer (obj, position, rotation, roundEnd);
+        RpcTransformPlayer (obj, position, rotation, roundEnd);
 	}
 
 	//Transform player on a clients
 	[ClientRpc]
-	public void Rpc_TransformPlayer(GameObject obj, Vector3 position, Quaternion rotation, bool roundEnd)
+	public void RpcTransformPlayer(GameObject obj, Vector3 position, Quaternion rotation, bool roundEnd)
     {
 
         
-
+        if(teleportScene)
         if (GameObject.FindGameObjectWithTag("GameManager")
                     .GetComponent<GameManagerTeleports>().m_TriggerList.Count > 3
                     && !roundEnd
                     || GameManagerTeleports.escaped)
         {
-            PlayerInfo.UIManager.DeactivateAllButtons();
+            PlayerInfo.UIManager.DisableAllButtons();
             return;
         }
 
@@ -364,25 +379,53 @@ public class UseTeleport : NetworkBehaviour
                 Logger.LogAction("Saved", gameObject, obj);
 
                 //Deactivate tower buttons
+                if(teleportScene)
                 if (PlayerInfo.localPlayerGameObject == gameObject)
-                    PlayerInfo.UIManager.DeactivateAllButtons();
-                
+                    PlayerInfo.UIManager.DisableAllButtons();
+
+                if (passengersScene && obj.Equals(PlayerInfo.localPlayerGameObject))
+                {
+                    PlayerInfo.UIManager.ChangeTowerPS();
+                    PlayerInfo.UIManager.saveButton.SetActive(false);
+
+                } else if (passengersScene)
+                {
+                    PlayerInfo.UIManager.saveButton.SetActive(false);
+                }
+                    
+
             }
             else
             {
                 Logger.LogAction("TakeOff", gameObject, null);
 
                 if (PlayerInfo.localPlayerGameObject == gameObject)
-                    PlayerInfo.UIManager.ChangeButtonsOnTower();
+                {
+                    if (teleportScene)
+                    {
+
+                        PlayerInfo.UIManager.ChangeTowerTP();
+                    }
+
+                    if (passengersScene)
+                        PlayerInfo.UIManager.ChangeTowerPS();
+                }
+
+            }
+
+                
+
 
                 //When somebody on tower takeOff to second position
+                if (teleportScene)
                 if (GameObject.FindGameObjectWithTag("GameManager")
                     .GetComponent<GameManagerTeleports>().m_TriggerList.Count > 0)
                 {
                     position = pos_2.transform.position;
                 }
-            }
+            
 
+            if(teleportScene)
             obj.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = 0;
         }
         
@@ -564,7 +607,7 @@ public class UseTeleport : NetworkBehaviour
             //|| otherTeleport.GetComponent<ParticleSystem>().isPlaying)
         {
             //Transform player to first position
-            Cmd_TransformPlayer(gameObject, pos_1.transform.position, pos_1.transform.rotation, false);
+            CmdTransformPlayer(gameObject, pos_1.transform.position, pos_1.transform.rotation, false);
         }
     }
 
@@ -594,7 +637,7 @@ public class UseTeleport : NetworkBehaviour
     public void AI_Save(GameObject target)
     {
         //Transform hitted player
-        Cmd_TransformPlayer(target, pos_2.transform.position, pos_2.transform.rotation, false);
+        CmdTransformPlayer(target, pos_2.transform.position, pos_2.transform.rotation, false);
 
 
     }

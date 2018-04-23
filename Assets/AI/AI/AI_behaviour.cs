@@ -1351,11 +1351,11 @@ public class AI_behaviour : MonoBehaviour {
 		}
 	}
 
-    /*
+    
     private void Fix (){
 
-        //gameObject.GetComponent<UIManager>().AI_Fix();
-        gameObject.GetComponent<UseTeleport>().AI_Fix();
+        
+        gameObject.GetComponent<FixAbility>().AI_Fix();
 
         allStaticActions[0] = new Actions("Fix", 0, new Vector2(0.10f, 0.15f), "Tower", "Tower", "Normal", "Normal");
 
@@ -1364,9 +1364,9 @@ public class AI_behaviour : MonoBehaviour {
 
     private void Hybernate()
     {
-		gameObject.GetComponent<UIManager> ().AI_Hybernate (target);
+		gameObject.GetComponent<HybernationSystem> ().AI_Hybernate (target);
 
 		key = false;
 	}
-		*/
+		
 }

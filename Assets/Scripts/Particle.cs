@@ -34,13 +34,8 @@ public class Particle : MonoBehaviour {
                 GetComponentInParent<HealAbility>().targetToHeal = gameObject;
                 // particleSystem.GetComponent<ParticleSystem>().Stop();
                 targetGameobject = GetComponentInParent<HealAbility>().targetToHeal;
-                GetComponentInParent<HealAbility>().healTrigger = false;
-                /*
-                if (GetComponentInParent<UseTeleport>().healButton.activeInHierarchy)
-                {
-                    GameObject.FindGameObjectWithTag("HealButton").GetComponentInChildren<Text>().text = "HEAL";
-                }
-                */
+                //GetComponentInParent<HealAbility>().healTrigger = false;
+                HealAbility.healTrigger = false;
                 healTime = 6.0f;
             }
             else if (healTime >= 0)

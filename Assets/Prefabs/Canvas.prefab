@@ -943,9 +943,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114751535547324896, guid: 6db82357c8ec48740b354b8069563bfa,
+      - m_Target: {fileID: 114346816546993796, guid: 6db82357c8ec48740b354b8069563bfa,
           type: 2}
-        m_MethodName: OnFixClick
+        m_MethodName: FixOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -955,9 +955,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114013253572711604, guid: 342c2db4eb07f9540ba14eb41a79f127,
+      - m_Target: {fileID: 114382199701862266, guid: 342c2db4eb07f9540ba14eb41a79f127,
           type: 2}
-        m_MethodName: OnFixClick
+        m_MethodName: FixOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -967,9 +967,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114854514947992736, guid: d51dc6bc0680fbc4a9e4d96c30716c60,
+      - m_Target: {fileID: 114072621906332160, guid: d51dc6bc0680fbc4a9e4d96c30716c60,
           type: 2}
-        m_MethodName: OnFixClick
+        m_MethodName: FixOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -979,9 +979,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114776446192368504, guid: 01680aafde9c191419051db260ad6ae8,
+      - m_Target: {fileID: 114439326627428488, guid: 01680aafde9c191419051db260ad6ae8,
           type: 2}
-        m_MethodName: OnFixClick
+        m_MethodName: FixOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1321,7 +1321,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114751535547324896, guid: 6db82357c8ec48740b354b8069563bfa,
+      - m_Target: {fileID: 114315530544880528, guid: 6db82357c8ec48740b354b8069563bfa,
           type: 2}
         m_MethodName: OnHybernateClick
         m_Mode: 1
@@ -1333,7 +1333,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114013253572711604, guid: 342c2db4eb07f9540ba14eb41a79f127,
+      - m_Target: {fileID: 114982134236461202, guid: 342c2db4eb07f9540ba14eb41a79f127,
           type: 2}
         m_MethodName: OnHybernateClick
         m_Mode: 1
@@ -1345,7 +1345,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114854514947992736, guid: d51dc6bc0680fbc4a9e4d96c30716c60,
+      - m_Target: {fileID: 114011643362738254, guid: d51dc6bc0680fbc4a9e4d96c30716c60,
           type: 2}
         m_MethodName: OnHybernateClick
         m_Mode: 1
@@ -1357,7 +1357,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114776446192368504, guid: 01680aafde9c191419051db260ad6ae8,
+      - m_Target: {fileID: 114011643362738254, guid: 01680aafde9c191419051db260ad6ae8,
           type: 2}
         m_MethodName: OnHybernateClick
         m_Mode: 1
@@ -2141,9 +2141,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114751535547324896, guid: 6db82357c8ec48740b354b8069563bfa,
+      - m_Target: {fileID: 114346816546993796, guid: 6db82357c8ec48740b354b8069563bfa,
           type: 2}
-        m_MethodName: ActivateGenerator
+        m_MethodName: ActivateGeneratorOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2153,9 +2153,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114013253572711604, guid: 342c2db4eb07f9540ba14eb41a79f127,
+      - m_Target: {fileID: 114382199701862266, guid: 342c2db4eb07f9540ba14eb41a79f127,
           type: 2}
-        m_MethodName: ActivateGenerator
+        m_MethodName: ActivateGeneratorOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2165,9 +2165,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114854514947992736, guid: d51dc6bc0680fbc4a9e4d96c30716c60,
+      - m_Target: {fileID: 114072621906332160, guid: d51dc6bc0680fbc4a9e4d96c30716c60,
           type: 2}
-        m_MethodName: ActivateGenerator
+        m_MethodName: ActivateGeneratorOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2177,9 +2177,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114776446192368504, guid: 01680aafde9c191419051db260ad6ae8,
+      - m_Target: {fileID: 114439326627428488, guid: 01680aafde9c191419051db260ad6ae8,
           type: 2}
-        m_MethodName: ActivateGenerator
+        m_MethodName: ActivateGeneratorOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
