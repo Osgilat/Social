@@ -323,7 +323,10 @@ public class GameManagerTeleports : NetworkBehaviour {
         else
         {
             if (teleportScene)
+            {
                 PlayerInfo.UIManager.ResetTeleportButtons();
+            }
+               
             if (shootersScene)
             {
                 PlayerInfo.UIManager.ResetShootersButtons();
@@ -404,6 +407,7 @@ public class GameManagerTeleports : NetworkBehaviour {
 
         }
 
+        
         //Playing until 
         while (teleportScene ?
             m_TriggerList.ToArray().Length < 4 && !escaped && timeLeft > 0
@@ -415,7 +419,19 @@ public class GameManagerTeleports : NetworkBehaviour {
 		}
         
 
-	}
+        //Kurchatov
+        /*
+        //Playing until 
+        while (
+            m_TriggerList.ToArray().Length < 4 && !escaped && timeLeft > 0)
+        {
+            
+            // ... return on the next frame.
+            yield return null;
+        }
+        */
+
+    }
 
 	private IEnumerator WaitBeforeClosingGame(){
 		yield return new WaitForSeconds (5);
@@ -439,7 +455,11 @@ public class GameManagerTeleports : NetworkBehaviour {
     private IEnumerator RoundEnding ()
     {
         if (teleportScene)
+        {
+            
             TeleportVisuals();
+        }
+            
 
         if (passengersScene)
         {
