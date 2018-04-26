@@ -55,6 +55,10 @@ public class GameManagerTeleports : NetworkBehaviour {
        
 	}
 
+
+
+    
+
     private IEnumerator WaitForInitializing()
     {
         yield return new WaitForSeconds(1);
@@ -407,6 +411,7 @@ public class GameManagerTeleports : NetworkBehaviour {
 
         }
 
+        /*
         
         //Playing until 
         while (teleportScene ?
@@ -417,11 +422,13 @@ public class GameManagerTeleports : NetworkBehaviour {
 			// ... return on the next frame.
 			yield return null;
 		}
+        */
         
 
         //Kurchatov
-        /*
-        //Playing until 
+        
+        //Playing until
+        
         while (
             m_TriggerList.ToArray().Length < 4 && !escaped && timeLeft > 0)
         {
@@ -429,7 +436,7 @@ public class GameManagerTeleports : NetworkBehaviour {
             // ... return on the next frame.
             yield return null;
         }
-        */
+        
 
     }
 

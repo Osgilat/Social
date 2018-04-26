@@ -34,6 +34,7 @@ public class UseTeleport : NetworkBehaviour
     public static bool takeOffTrigger = false; 
 	public static bool saveTrigger = false;
 	public static bool escapeTrigger = false;
+    public static bool resetTrigger = false;
 
     public static bool initializeTrigger = false;
 
@@ -91,11 +92,7 @@ public class UseTeleport : NetworkBehaviour
         {
            // audioSync.PlayLocalSound(8);
 
-            //For each game manager activate escape button
-            foreach (GameObject manager in GameObject.FindGameObjectsWithTag("GameManager"))
-            {
-                CmdActivateEscapeButton(manager);
-            }
+            CmdActivateEscapeButton("Escaped");
         }
 
         if (PlayerInfo.UIManager.takeOffButton.activeSelf && Input.GetKeyDown(KeyCode.Alpha2))
@@ -212,14 +209,19 @@ public class UseTeleport : NetworkBehaviour
             //Reset trigger
             escapeTrigger = false;
 
-
-            foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
-                //for each game manager activate escape button
-                foreach (GameObject manager in GameObject.FindGameObjectsWithTag("GameManager"))
-                {
-                    CmdActivateEscapeButton(manager);
-                }
+            CmdActivateEscapeButton("Escaped");
         }
+
+
+        //if reset button pushed 
+        if (resetTrigger)
+        {
+            //Reset trigger
+            resetTrigger = false;
+
+            CmdActivateEscapeButton("Reset");
+        }
+
     }
 
 
@@ -454,19 +456,20 @@ public class UseTeleport : NetworkBehaviour
 
     //Call escape for a player on a server
     [Command]
-	void CmdActivateEscapeButton(GameObject obj){
-		objNetId = obj.GetComponent<NetworkIdentity> ();
-		objNetId.AssignClientAuthority (connectionToClient);
-		RpcActivateEscapeButton (obj);
-		objNetId.RemoveClientAuthority (connectionToClient);
+	public void CmdActivateEscapeButton(string text)
+    {
+		
+		RpcActivateEscapeButton (text);
 	}
 
 	//Set escaped trigger to true
 	[ClientRpc]
-	void RpcActivateEscapeButton(GameObject manager)
+	void RpcActivateEscapeButton(string text)
     {
-        if(!GameManagerTeleports.escaped)
-        Logger.LogAction("Escaped", gameObject, null);
+
+        //  Logger.LogAction("Escaped", gameObject, null);
+        if (!GameManagerTeleports.escaped)
+            Logger.LogAction(text, gameObject, null);
         GameManagerTeleports.escaped = true;
 	}
 
@@ -652,6 +655,17 @@ public class UseTeleport : NetworkBehaviour
             escapeTrigger = true;
         }
             
+    }
+
+    public void ResetOnClick()
+    {
+       // Debug.Log("Reset on click");
+        if (gameObject.GetComponent<PlayerInfo>().IsTrueLocalPlayer())
+        {
+            // Debug.Log("Reset on click local");
+            resetTrigger = true;
+        }
+
     }
 
 
