@@ -411,7 +411,7 @@ public class GameManagerTeleports : NetworkBehaviour {
 
         }
 
-        /*
+        
         
         //Playing until 
         while (teleportScene ?
@@ -422,13 +422,13 @@ public class GameManagerTeleports : NetworkBehaviour {
 			// ... return on the next frame.
 			yield return null;
 		}
-        */
+        
         
 
         //Kurchatov
         
         //Playing until
-        
+        /*
         while (
             m_TriggerList.ToArray().Length < 4 && !escaped && timeLeft > 0)
         {
@@ -437,7 +437,7 @@ public class GameManagerTeleports : NetworkBehaviour {
             yield return null;
         }
         
-
+        */
     }
 
 	private IEnumerator WaitBeforeClosingGame(){
