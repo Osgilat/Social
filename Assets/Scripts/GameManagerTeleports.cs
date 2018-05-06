@@ -48,10 +48,48 @@ public class GameManagerTeleports : NetworkBehaviour {
 	{
         source = GetComponent<AudioSource>();
 
-        StartCoroutine(WaitForInitializing());
+        
+
+        //Getting an image to block gamer's vision
+        if (GameObject.FindGameObjectWithTag("MsgImage") != null)
+        {
+            m_MessageImage = GameObject.FindGameObjectWithTag("MsgImage").GetComponent<Image>();
+            m_MessageText = GameObject.FindGameObjectWithTag("MsgText").GetComponent<Text>();
+        }
+
+        if (SceneManager.GetActiveScene().name == "TeleportsML")
+        {
+            m_MessageText.text = string.Empty;
+            m_MessageImage.CrossFadeAlpha(0, 0.1f, false);
+        }
+        else
+        {
+            StartCoroutine(WaitForInitializing());
+        }
+
+
+        Invoke("Initialization", 2f);
+
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "Teleports":
+                teleportScene = true;
+                break;
+            case "TeleportsML":
+                teleportScene = true;
+                break;
+            case "ThreeShooters":
+                shootersScene = true;
+                break;
+            case "Passengers":
+                passengersScene = true;
+                break;
+            default:
+
+                break;
+        }
 
         
-        Invoke("Initialization", 2f);
        
 	}
 
@@ -78,21 +116,7 @@ public class GameManagerTeleports : NetworkBehaviour {
     {
         
 
-        switch (SceneManager.GetActiveScene().name)
-        {
-            case "Teleports":
-                teleportScene = true;
-                break;
-            case "ThreeShooters":
-                shootersScene = true;
-                break;
-            case "Passengers":
-                passengersScene = true;
-                break;
-            default:
-                
-                break;
-        }
+        
 
         //Find players and spawn points in a game
         players = GameObject.FindGameObjectsWithTag("Player");
@@ -107,7 +131,11 @@ public class GameManagerTeleports : NetworkBehaviour {
 
         movementSpeed = players[0].GetComponent<UnityEngine.AI.NavMeshAgent>().speed;
 
-        Time.timeScale = 0;
+        if (SceneManager.GetActiveScene().name != "TeleportsML")
+        {
+            Time.timeScale = 0;
+        }
+            
 
         if(passengersScene)
         InitializePassengersFields();
@@ -167,10 +195,14 @@ public class GameManagerTeleports : NetworkBehaviour {
     //Used to control round time 
     void Update()
     {
+
+        
         if (!initBool)
         {
             return;
         }
+
+
 
 
         timeLeft -= Time.deltaTime;
@@ -182,11 +214,12 @@ public class GameManagerTeleports : NetworkBehaviour {
         if (timeLeft > 0 && GameObject.FindGameObjectWithTag("RoundTimer") != null)
             GameObject.FindGameObjectWithTag("RoundTimer").GetComponent<Text>().text = minutes + ":" + seconds;
 
-        if (timeLeftInGame < 0)
+        
+        if (timeLeftInGame < 0 && SceneManager.GetActiveScene().name != "TeleportsML")
         {
             Application.Quit();
         }
-
+        
         
 
         if(shootersScene)
@@ -345,9 +378,11 @@ public class GameManagerTeleports : NetworkBehaviour {
                 
         }
 
-        
 
-        Time.timeScale = 1;
+        if (SceneManager.GetActiveScene().name != "TeleportsML")
+        {
+            Time.timeScale = 1;
+        }
 
         // Increment the round number and display text showing the players what round it is.
         roundNumber++;

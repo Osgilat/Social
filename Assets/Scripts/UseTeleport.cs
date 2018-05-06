@@ -62,6 +62,9 @@ public class UseTeleport : NetworkBehaviour
             case "Teleports":
                 teleportScene = true;
                 break;
+            case "TeleportsML":
+                teleportScene = true;
+                break;
             case "ThreeShooters":
                 shootersScene = true;
                 break;
@@ -250,7 +253,8 @@ public class UseTeleport : NetworkBehaviour
 		ParticleSystem teleport = obj.GetComponent<ParticleSystem> ();
 
 		//if particle system is active then stop and clear
-		if (teleport.isPlaying) {
+		if (teleport.isPlaying)
+        {
 
             Logger.LogAction("Deactivated", gameObject, null);
 

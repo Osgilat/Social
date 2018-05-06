@@ -476,6 +476,7 @@ public class AI_behaviour : MonoBehaviour {
     }
 
     private bool teleportScene = false;
+    private bool teleportmlScene = false;
     private bool shootersScene = false;
     private bool passengersScene = false;
 
@@ -490,6 +491,11 @@ public class AI_behaviour : MonoBehaviour {
                 InitializeActors(3);
                 teleportScene = true;
                 break;
+			case "TeleportsML":
+				InitializeTeleports();
+				InitializeActors(3);
+				teleportmlScene = true;
+				break;
             case "ThreeShooters":
                 InitializeActors(3);
                 shootersScene = true;
@@ -851,7 +857,18 @@ public class AI_behaviour : MonoBehaviour {
             allStaticActions[0] = new Actions("TakeOff", 1, new Vector2(2.10f, 0.15f), "Platform", "Platform", "Normal", "Normal");
             allStaticActions[1] = new Actions("Activated", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Normal");
 
-        } 
+        }
+        else if (teleportmlScene)
+        {
+            allActions = new Actions[1];
+
+            allActions[0] = new Actions("Ask", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Normal");
+            
+            allStaticActions = new Actions[1];
+
+            allStaticActions[0] = new Actions("Activated", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Normal");
+
+        }
         else if (shootersScene)
         {
             allActions = new Actions[6];

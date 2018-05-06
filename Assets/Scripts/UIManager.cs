@@ -219,6 +219,22 @@ public class UIManager: NetworkBehaviour {
 
                 break;
 
+		case "TeleportsML":
+			//Deactivate all buttons 
+			activateButton.SetActive(false);
+			takeOffButton.SetActive(false);
+			saveButton.SetActive(false);
+			fixButton.SetActive(false);
+			hybernateButton.SetActive(false);
+			wakeUpButton.SetActive(false);
+			targetButton.SetActive(false);
+			healButton.SetActive(false);
+			shootButton.SetActive(false);
+			activateGeneratorButton.SetActive(false);
+			escapeButton.SetActive(false);
+
+			break;
+
             case "TeleportsVR":
                 //Deactivate all buttons 
                 activateButton.SetActive(false);

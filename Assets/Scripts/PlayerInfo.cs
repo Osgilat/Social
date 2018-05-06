@@ -16,13 +16,19 @@ public class PlayerInfo : NetworkBehaviour
     public GameObject playerToTarget1 = null;
     public GameObject playerToTarget2 = null;
 
+    void Awake()
+    {
+        localPlayerGameObject = gameObject;
+    }
+
     // Use this for initialization
     void Start ()
     {
+
         string temp = gameObject.name.Remove(11);
         playerID = temp.Replace("Mod_", " ");
 
-        
+        localPlayerGameObject = gameObject;
 
         Invoke("SearchForOtherPlayers", 2f);
     }

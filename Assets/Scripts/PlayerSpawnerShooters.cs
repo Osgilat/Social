@@ -18,9 +18,19 @@ public class PlayerSpawnerShooters : NetworkManager {
 
 	void Start()
 	{
-		meshes.Add(playerA);
+        //GetComponent<NetworkManager>().StartServer();
+        /*
+        NetworkManager.singleton.StartServer();
+
+        NetworkServer.Reset();
+        */
+
+
+        //GetComponent<NetworkManager>().StartHost();
+        NetworkManager.singleton.StartHost();
+        meshes.Add(playerA);
 		meshes.Add(playerB);
-		meshes.Add(playerC);
+		//meshes.Add(playerC);
     }
 
 	//subclass for sending network messages
@@ -29,7 +39,7 @@ public class PlayerSpawnerShooters : NetworkManager {
 	}
 
 
-
+    
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader) {
 		NetworkMessage message = extraMessageReader.ReadMessage< NetworkMessage>();
         
@@ -41,7 +51,7 @@ public class PlayerSpawnerShooters : NetworkManager {
             player.GetComponent<HybernationSystem>().hybernated = false;
         }
 
-        if (players.Length == 0)
+        if (players.Length <= 1)
         {
             
             int randCharIndex = Random.Range(0, meshes.Count);
@@ -53,10 +63,11 @@ public class PlayerSpawnerShooters : NetworkManager {
 
             aiPlayer = Instantiate(meshes[randCharIndex], spawn.position, spawn.rotation) as GameObject;
             aiPlayer.GetComponent<AI_behaviour>().enabled = true;
-            aiPlayer.GetComponent<AI_behaviour>().useMoralScheme = true;
+            aiPlayer.GetComponent<AI_behaviour>().useMoralScheme = false;
             meshes.RemoveAt(randCharIndex);
             NetworkServer.Spawn(aiPlayer);
 
+            /*
             //Used for a ai representation
             aiPlayer = null;
 
@@ -69,7 +80,7 @@ public class PlayerSpawnerShooters : NetworkManager {
             aiPlayer.GetComponent<AI_behaviour>().useMoralScheme = false;
             meshes.RemoveAt(randCharIndex);
             NetworkServer.Spawn(aiPlayer);
-
+            */
             
         }
 
@@ -98,7 +109,7 @@ public class PlayerSpawnerShooters : NetworkManager {
         }
 
     }
-
+    
 	public override void OnClientConnect(NetworkConnection conn) {
 		NetworkMessage test = new NetworkMessage();
 		test.chosenClass = chosenCharacter;

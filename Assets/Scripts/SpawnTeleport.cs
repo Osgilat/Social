@@ -20,6 +20,8 @@ public class SpawnTeleport : NetworkBehaviour {
 
     public override void OnStartServer(){
 
+       
+
         switch (SceneManager.GetActiveScene().name)
         {
             case "Teleports":
@@ -28,8 +30,6 @@ public class SpawnTeleport : NetworkBehaviour {
                 gameManager = (GameObject)Instantiate(GameManager);
                 ui_manager = (GameObject)Instantiate(UI_manager);
                 // gen = (GameObject) Instantiate(Generator, Generator.transform.position, Generator.transform.rotation);
-
-
 
                 NetworkServer.Spawn(p_1);
 
@@ -42,6 +42,26 @@ public class SpawnTeleport : NetworkBehaviour {
                 //  NetworkServer.Spawn(gen);
 
                 break;
+
+		case "TeleportsML":
+			p_1 = (GameObject)Instantiate(Platform_1, new Vector3(5.24f, 0.12f, 0.3527f), Quaternion.AngleAxis(270, Vector3.right));
+			p_2 = (GameObject)Instantiate(Platform_2, new Vector3(-4.2f, 0.12f, 0.3527f), Quaternion.AngleAxis(270, Vector3.right));
+			gameManager = (GameObject)Instantiate(GameManager);
+			ui_manager = (GameObject)Instantiate(UI_manager);
+                // gen = (GameObject) Instantiate(Generator, Generator.transform.position, Generator.transform.rotation);
+
+
+                NetworkServer.Spawn(p_1);
+
+			NetworkServer.Spawn(p_2);
+
+			NetworkServer.Spawn(gameManager);
+
+			NetworkServer.Spawn(ui_manager);
+
+			//  NetworkServer.Spawn(gen);
+
+			break;
                 /*
             case "TeleportsVR":
                 p_1 = (GameObject)Instantiate(Platform_1, new Vector3(5.24f, 0.12f, 0.3527f), Quaternion.AngleAxis(270, Vector3.right));
