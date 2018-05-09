@@ -62,8 +62,8 @@ public class PlayerSpawnerShooters : NetworkManager {
             Transform spawn = NetworkManager.singleton.GetStartPosition();
 
             aiPlayer = Instantiate(meshes[randCharIndex], spawn.position, spawn.rotation) as GameObject;
-            aiPlayer.GetComponent<AI_behaviour>().enabled = true;
-            aiPlayer.GetComponent<AI_behaviour>().useMoralScheme = false;
+            //aiPlayer.GetComponent<AI_behaviour>().enabled = true;
+            //aiPlayer.GetComponent<AI_behaviour>().useMoralScheme = false;
             meshes.RemoveAt(randCharIndex);
             NetworkServer.Spawn(aiPlayer);
 
