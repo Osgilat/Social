@@ -6,14 +6,16 @@ using UnityEngine.AI;
 public class TeleportAgent : Agent
 {
 
-    
-    public GameObject firstPlatform;
-    public GameObject secondPlatform;
+    GameObject firstPlatform;
+    GameObject secondPlatform;
+
     public GameObject scene;
 
 
     public override void CollectObservations()
     {
+        firstPlatform = GameObject.FindGameObjectWithTag("Platform_1");
+        secondPlatform = GameObject.FindGameObjectWithTag("Platform_2");
 
         AddVectorObs(gameObject.transform.position.x / 10);
         AddVectorObs(gameObject.transform.position.z / 10);
@@ -40,6 +42,7 @@ public class TeleportAgent : Agent
 
     private float previousDistance = float.MaxValue;
     GameObject memTeleport = null;
+    
 
     public override void AgentAction(float[] vectorAction, string temp = "")
     {
@@ -76,7 +79,7 @@ public class TeleportAgent : Agent
 
         
 
-        if (activePlatform == null)
+        if (activePlatform == null || transform.position.y > 1.5f)
         {
             return;
         }
@@ -160,8 +163,8 @@ public class TeleportAgent : Agent
         if (distanceToTarget < 2.25f)
         {
             AddReward(1f);
-            //gameObject.GetComponent<UseTeleport>().AI_TakeOff();
-            //gameObject.GetComponent<UseTeleport>().CmdActivateEscapeButton("Escaped");
+            gameObject.GetComponent<UseTeleport>().Agent_TakeOff();
+            gameObject.GetComponent<UseTeleport>().CmdActivateEscapeButton("Escaped");
             Done();
         }
 

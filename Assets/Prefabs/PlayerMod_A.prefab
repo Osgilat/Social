@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 114152430108551554}
   - component: {fileID: 114760915554428306}
   - component: {fileID: 114346816546993796}
+  - component: {fileID: 114814211456533514}
   m_Layer: 0
   m_Name: PlayerMod_A
   m_TagString: Player
@@ -2040,6 +2041,25 @@ MonoBehaviour:
   wakeTrigger: 0
   thankTrigger: 0
   saveTrigger: 0
+--- !u!114 &114814211456533514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011618811342}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b6dbca067ca6847861fc8eacd04c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brain: {fileID: 0}
+  agentParameters:
+    agentCameras: []
+    maxStep: 0
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  scene: {fileID: 0}
 --- !u!124 &124000011041659674
 Behaviour:
   m_ObjectHideFlags: 1

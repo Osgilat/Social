@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 114435557410036382}
   - component: {fileID: 114511119709612076}
   - component: {fileID: 114072621906332160}
+  - component: {fileID: 114358840154081192}
   m_Layer: 0
   m_Name: PlayerMod_C
   m_TagString: Player
@@ -1937,6 +1938,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetGameobject: {fileID: 0}
+--- !u!114 &114358840154081192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012744456312}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b6dbca067ca6847861fc8eacd04c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brain: {fileID: 0}
+  agentParameters:
+    agentCameras: []
+    maxStep: 0
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  scene: {fileID: 0}
 --- !u!114 &114435557410036382
 MonoBehaviour:
   m_ObjectHideFlags: 1

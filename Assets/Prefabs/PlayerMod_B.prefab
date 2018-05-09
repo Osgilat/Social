@@ -279,6 +279,7 @@ GameObject:
   - component: {fileID: 114767939457798426}
   - component: {fileID: 114124803580619106}
   - component: {fileID: 114382199701862266}
+  - component: {fileID: 114016653424374338}
   m_Layer: 0
   m_Name: PlayerMod_B
   m_TagString: Player
@@ -1968,6 +1969,25 @@ MonoBehaviour:
   teleportScene: 0
   shootersScene: 0
   passengersScene: 0
+--- !u!114 &114016653424374338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013389839716}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b6dbca067ca6847861fc8eacd04c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brain: {fileID: 0}
+  agentParameters:
+    agentCameras: []
+    maxStep: 0
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  scene: {fileID: 0}
 --- !u!114 &114124803580619106
 MonoBehaviour:
   m_ObjectHideFlags: 1

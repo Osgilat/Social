@@ -618,6 +618,16 @@ public class UseTeleport : NetworkBehaviour
         }
     }
 
+    //Used for AI actions triggering
+    public void Agent_TakeOff()
+    {
+
+        
+            //Transform player to first position
+            CmdTransformPlayer(gameObject, pos_1.transform.position, pos_1.transform.rotation, false);
+        
+    }
+
 
 
     //Triggers button

@@ -10,7 +10,9 @@ public class PlayerSpawnerShooters : NetworkManager {
 	[SerializeField] public GameObject playerA;
 	[SerializeField] public GameObject playerB;
 	[SerializeField] public GameObject playerC;
-   
+
+    public Brain brain;
+
     List<GameObject> meshes = new List<GameObject> ();
 
     //Used to store chars for players
@@ -30,7 +32,7 @@ public class PlayerSpawnerShooters : NetworkManager {
         NetworkManager.singleton.StartHost();
         meshes.Add(playerA);
 		meshes.Add(playerB);
-		//meshes.Add(playerC);
+		meshes.Add(playerC);
     }
 
 	//subclass for sending network messages
@@ -67,7 +69,7 @@ public class PlayerSpawnerShooters : NetworkManager {
             meshes.RemoveAt(randCharIndex);
             NetworkServer.Spawn(aiPlayer);
 
-            /*
+            
             //Used for a ai representation
             aiPlayer = null;
 
@@ -76,11 +78,20 @@ public class PlayerSpawnerShooters : NetworkManager {
             randCharIndex = Random.Range(0, meshes.Count);
 
             aiPlayer = Instantiate(meshes[randCharIndex], spawn.position, spawn.rotation) as GameObject;
+            
+           
+            Agent agent = aiPlayer.GetComponent<TeleportAgent>();
+            agent.enabled = true;
+            agent.GiveBrain(brain);
+            agent.AgentReset();
+            
+            /*
             aiPlayer.GetComponent<AI_behaviour>().enabled = true;
             aiPlayer.GetComponent<AI_behaviour>().useMoralScheme = false;
+            */
             meshes.RemoveAt(randCharIndex);
             NetworkServer.Spawn(aiPlayer);
-            */
+            
             
         }
 
