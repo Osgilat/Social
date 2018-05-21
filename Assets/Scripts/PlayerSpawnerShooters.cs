@@ -79,12 +79,13 @@ public class PlayerSpawnerShooters : NetworkManager {
 
             aiPlayer = Instantiate(meshes[randCharIndex], spawn.position, spawn.rotation) as GameObject;
             
-           
+           /*
             Agent agent = aiPlayer.GetComponent<TeleportAgent>();
             agent.enabled = true;
             agent.GiveBrain(brain);
             agent.AgentReset();
-            
+            */
+
             /*
             aiPlayer.GetComponent<AI_behaviour>().enabled = true;
             aiPlayer.GetComponent<AI_behaviour>().useMoralScheme = false;
