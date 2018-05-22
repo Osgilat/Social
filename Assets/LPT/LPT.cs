@@ -15,13 +15,13 @@ namespace SiSubs
         [DllImport("inpoutx64.dll", EntryPoint = "Out32")]
         private static extern void Output(int adress, int value);
 
-        public static void Send()
+        public static void Send(int match, int targetMatch)
         {            
             try
             {
                 var sw = Stopwatch.StartNew();
                 double d = 0;
-                Output((int)Port, 7);
+                Output((int)Port, match);
 
                 do
                 {
@@ -31,6 +31,23 @@ namespace SiSubs
                 //UnityEngine.Debug.Log("Success in LPT");
 
                 Output((int)Port, 0);
+
+                do
+                {
+                    d = Math.Sin(d);
+                } while ((double)sw.ElapsedTicks * 1000 / Stopwatch.Frequency < TimeOut);
+
+                var sw = Stopwatch.StartNew();
+                double d = 0;
+                Output((int)Port, targetMatch);
+
+                do
+                {
+                    d = Math.Sin(d);
+                } while ((double)sw.ElapsedTicks * 1000 / Stopwatch.Frequency < TimeOut);
+
+                Output((int)Port, 0);
+
             }
             catch (Exception ex)
             {

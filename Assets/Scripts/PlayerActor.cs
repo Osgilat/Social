@@ -29,10 +29,7 @@ public class PlayerActor : NetworkBehaviour
 
 
     public static List<GameObject> players;
-
-
-
-
+    
     private bool mLock;
     
 

@@ -266,7 +266,7 @@ public class UseTeleport : NetworkBehaviour
         //if stopped then set active
         else if (teleport.isStopped)
         {
-            Logger.LogAction("Activated", gameObject, obj);
+            Logger.LogAction("Activated", gameObject, null);
 
             teleport.Play ();
 		}

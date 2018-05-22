@@ -827,6 +827,7 @@ MonoBehaviour:
   playerA: {fileID: 1000011618811342, guid: 6db82357c8ec48740b354b8069563bfa, type: 2}
   playerB: {fileID: 1000013389839716, guid: 342c2db4eb07f9540ba14eb41a79f127, type: 2}
   playerC: {fileID: 1000012744456312, guid: d51dc6bc0680fbc4a9e4d96c30716c60, type: 2}
+  brain: {fileID: 0}
 --- !u!1001 &283102353
 Prefab:
   m_ObjectHideFlags: 0

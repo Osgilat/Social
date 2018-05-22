@@ -26,15 +26,17 @@ public class ChooseToggleGroupBot : MonoBehaviour {
                 case "C":
                     selectedName = "PlayerMod_C(Clone)";
                     break;
+                    /*
                 case "D":
                     selectedName = "PlayerMod_D(Clone)";
                     break;
+                    */
                 default:
                     selectedName = "selectedNobody";
                     break;
             }
 
-            Logger.LogAction("ConfirmedHuman " + selectedName, PlayerInfo.localPlayerGameObject, null);
+            Logger.LogAction("ConfirmedHuman", PlayerInfo.localPlayerGameObject, GameObject.Find(selectedName));
         }
 
         toggleGroupInstance.gameObject.SetActive(false);
@@ -60,23 +62,25 @@ public class ChooseToggleGroupBot : MonoBehaviour {
             case "PlayerMod_A(Clone)":
                 selectableNames[0].text = "B";
                 selectableNames[1].text = "C";
-                selectableNames[2].text = "D";
+               // selectableNames[2].text = "D";
                 break;
             case "PlayerMod_B(Clone)":
                 selectableNames[0].text = "A";
                 selectableNames[1].text = "C";
-                selectableNames[2].text = "D";
+               // selectableNames[2].text = "D";
                 break;
             case "PlayerMod_C(Clone)":
                 selectableNames[0].text = "A";
                 selectableNames[1].text = "B";
-                selectableNames[2].text = "D";
+               // selectableNames[2].text = "D";
                 break;
+                /*
             case "PlayerMod_D(Clone)":
                 selectableNames[0].text = "A";
                 selectableNames[1].text = "B";
                 selectableNames[2].text = "C";
                 break;
+                */
         }
 
     }
