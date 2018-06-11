@@ -37,7 +37,7 @@ namespace Prototype.NetworkLobby
             meshes.Add(playerA);
             meshes.Add(playerB);
             meshes.Add(playerC);
-            meshes.Add(playerD);
+           // meshes.Add(playerD);
 
             
 

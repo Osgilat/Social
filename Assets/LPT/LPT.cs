@@ -11,12 +11,12 @@ namespace SiSubs
         public static LptPorts Port;
         private const int TimeOut = 3;
 
-        //[DllImport("inpout32.dll", EntryPoint = "Out32")]
-        [DllImport("inpoutx64.dll", EntryPoint = "Out32")]
+        [DllImport("inpout32.dll", EntryPoint = "Out32")]
+        //[DllImport("inpoutx64.dll", EntryPoint = "Out32")]
         private static extern void Output(int adress, int value);
 
         public static void Send(int match, int targetMatch)
-        {            
+        {
             try
             {
                 var sw = Stopwatch.StartNew();
@@ -37,8 +37,8 @@ namespace SiSubs
                     d = Math.Sin(d);
                 } while ((double)sw.ElapsedTicks * 1000 / Stopwatch.Frequency < TimeOut);
 
-                var sw = Stopwatch.StartNew();
-                double d = 0;
+                sw = Stopwatch.StartNew();
+                d = 0;
                 Output((int)Port, targetMatch);
 
                 do
@@ -52,7 +52,7 @@ namespace SiSubs
             catch (Exception ex)
             {
                 UnityEngine.Debug.Log("Exception in LPT " + ex);
-            }            
+            }
         }
 
 

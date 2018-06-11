@@ -4,7 +4,8 @@ using UnityEngine;
 using System;
 using SiSubs;
 
-public class Logger : MonoBehaviour {
+public class Logger : MonoBehaviour
+{
 
     public static readonly int[,] i =
         {       //A  B  C  
@@ -19,6 +20,34 @@ public class Logger : MonoBehaviour {
         /*CH 8*/  { 25, 26, 27 }, /*T*/
 
         };
+
+    private static float timeForMoveSend = 3.0f;
+
+    private static bool mayLogMove = false;
+    private static bool moveLogBlockedTrigger = false;
+    private static bool memTrigger = false;
+
+    private void Update()
+    {
+        //Debug.Log(timeForMoveSend);
+
+        if (memTrigger != moveLogBlockedTrigger)
+        {
+
+            memTrigger = moveLogBlockedTrigger;
+            timeForMoveSend = 3.0f;
+
+        }
+        else
+        {
+            timeForMoveSend -= Time.deltaTime;
+            if (timeForMoveSend <= 0)
+            {
+                mayLogMove = true;
+                timeForMoveSend = 3.0f;
+            }
+        }
+    }
 
     public static void LogAction(String action, GameObject actor, GameObject target)
     {
@@ -46,7 +75,7 @@ public class Logger : MonoBehaviour {
                     actor.gameObject.GetComponent<PlayerActor>().hit.point.ToString().Replace("(", "").Replace(")", "") : ""
                 : target.gameObject.GetComponent<PlayerInfo>().playerID.Replace("Player ", "")));
 
-            
+
 
             int match = -1;
 
@@ -74,7 +103,17 @@ public class Logger : MonoBehaviour {
                     match = 19;
                     break;
                 case "Move":
-                    match = 22;
+                    if (!mayLogMove)
+                    {
+                        match = -1;
+                    }
+                    else
+                    {
+                        match = 22;
+                        mayLogMove = false;
+                    }
+
+                    moveLogBlockedTrigger = !moveLogBlockedTrigger;
                     break;
                 case "ConfirmedHuman":
                     match = 25;
@@ -87,7 +126,7 @@ public class Logger : MonoBehaviour {
 
             int targetMatch = -1;
 
-            if(target != null)
+            if (target != null && match != (-1))
             {
                 switch (target.GetComponent<PlayerInfo>().playerID)
                 {
@@ -102,27 +141,27 @@ public class Logger : MonoBehaviour {
                         break;
                 }
             }
-            
 
-            switch (actor.GetComponent<PlayerInfo>().playerID)
+            if (match != -1)
             {
-                case "Player A":
-                    match += 0;
-                    break;
-                case "Player B":
-                    match += 1;
-                    break;
-                case "Player C":
-                    match += 2;
-                    break;
+                switch (actor.GetComponent<PlayerInfo>().playerID)
+                {
+                    case "Player A":
+                        match += 0;
+                        break;
+                    case "Player B":
+                        match += 1;
+                        break;
+                    case "Player C":
+                        match += 2;
+                        break;
+                }
             }
 
-           
-
-            Debug.Log("MATCH " + match + " TARGET " + targetMatch);
+            //Debug.Log("MATCH " + match + " TARGET " + targetMatch);
             if (match != (-1))
             {
-                if(targetMatch != -1)
+                if (targetMatch != -1)
                 {
                     Lpt.Send(match, targetMatch);
                 }
@@ -131,11 +170,11 @@ public class Logger : MonoBehaviour {
                     Lpt.Send(match, match);
                 }
             }
-            
 
-        //Notify bots about action
+
+            //Notify bots about action
             BotsNotifier.Notify(action, actor, target);
         }
-        
+
     }
 }

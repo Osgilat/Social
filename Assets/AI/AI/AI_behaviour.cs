@@ -845,6 +845,7 @@ public class AI_behaviour : MonoBehaviour {
 
         if (teleportScene)
         {
+            //Debug.Log("ArrayTELEPORTSCENE");
             allActions = new Actions[4];
 
             allActions[0] = new Actions("Ask", 1, new Vector2(0.10f, 0.15f), "Platform", "Platform", "Normal", "Normal");
