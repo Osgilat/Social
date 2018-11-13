@@ -43,7 +43,7 @@ public class Logger : MonoBehaviour
             timeForMoveSend -= Time.deltaTime;
             if (timeForMoveSend <= 0)
             {
-                mayLogMove = true;
+                mayLogMove = false;
                 timeForMoveSend = 3.0f;
             }
         }
@@ -76,7 +76,7 @@ public class Logger : MonoBehaviour
                 : target.gameObject.GetComponent<PlayerInfo>().playerID.Replace("Player ", "")));
 
 
-
+            /*
             int match = -1;
 
             switch (action)
@@ -171,7 +171,7 @@ public class Logger : MonoBehaviour
                 }
             }
 
-
+    */
             //Notify bots about action
             BotsNotifier.Notify(action, actor, target);
         }

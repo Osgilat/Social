@@ -64,13 +64,14 @@ public class PlayerSpawnerShooters : NetworkManager {
             Transform spawn = NetworkManager.singleton.GetStartPosition();
 
             aiPlayer = Instantiate(meshes[randCharIndex], spawn.position, spawn.rotation) as GameObject;
-            //aiPlayer.GetComponent<AI_behaviour>().enabled = true;
-            //aiPlayer.GetComponent<AI_behaviour>().useMoralScheme = false;
+            aiPlayer.GetComponent<AI_behaviour>().enabled = true;
+            aiPlayer.GetComponent<AI_behaviour>().useMoralScheme = false;
             meshes.RemoveAt(randCharIndex);
             NetworkServer.Spawn(aiPlayer);
 
             
             //Used for a ai representation
+            /*
             aiPlayer = null;
 
             spawn = NetworkManager.singleton.GetStartPosition();
@@ -78,6 +79,7 @@ public class PlayerSpawnerShooters : NetworkManager {
             randCharIndex = Random.Range(0, meshes.Count);
 
             aiPlayer = Instantiate(meshes[randCharIndex], spawn.position, spawn.rotation) as GameObject;
+            */
             
            /*
             Agent agent = aiPlayer.GetComponent<TeleportAgent>();
@@ -90,8 +92,8 @@ public class PlayerSpawnerShooters : NetworkManager {
             aiPlayer.GetComponent<AI_behaviour>().enabled = true;
             aiPlayer.GetComponent<AI_behaviour>().useMoralScheme = false;
             */
-            meshes.RemoveAt(randCharIndex);
-            NetworkServer.Spawn(aiPlayer);
+            //meshes.RemoveAt(randCharIndex);
+            //NetworkServer.Spawn(aiPlayer);
             
             
         }

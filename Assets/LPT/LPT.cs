@@ -8,7 +8,7 @@ namespace SiSubs
     public static class Lpt
     {
         public enum LptPorts { Lpt1 = 0x378, Lpt2 = 0x278 }
-        public static LptPorts Port;
+        public static LptPorts Port = LptPorts.Lpt1;
         private const int TimeOut = 3;
 
         [DllImport("inpout32.dll", EntryPoint = "Out32")]
@@ -17,6 +17,8 @@ namespace SiSubs
 
         public static void Send(int match, int targetMatch)
         {
+            //UnityEngine.Debug.Log("Success in LPT " + (int)Port + " address ");
+
             try
             {
                 var sw = Stopwatch.StartNew();
@@ -28,7 +30,7 @@ namespace SiSubs
                     d = Math.Sin(d);
                 } while ((double)sw.ElapsedTicks * 1000 / Stopwatch.Frequency < TimeOut);
 
-                //UnityEngine.Debug.Log("Success in LPT");
+                //UnityEngine.Debug.Log("Success in LPT " + (int)Port + " address ");
 
                 Output((int)Port, 0);
 
@@ -51,7 +53,7 @@ namespace SiSubs
             }
             catch (Exception ex)
             {
-                UnityEngine.Debug.Log("Exception in LPT " + ex);
+             //   UnityEngine.Debug.Log("Exception in LPT " + ex);
             }
         }
 

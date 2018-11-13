@@ -30,7 +30,7 @@ public class PlayerActor : NetworkBehaviour
 
     public static List<GameObject> players;
     
-    private bool mLock;
+    
     
 
     //Initialize on start
@@ -101,6 +101,7 @@ public class PlayerActor : NetworkBehaviour
     //Clicked place
     public RaycastHit hit;
 
+    public bool lockClick = false;
 
     void FixedUpdate()
     {
@@ -131,14 +132,13 @@ public class PlayerActor : NetworkBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            mLock = false;
+            lockClick = false;
         }
 
         //if left clicked
-        if (!mLock && Input.GetMouseButtonDown(0)) {
+        if (!lockClick && Input.GetMouseButtonDown(0)) {
 
-            mLock = true;
-           
+            lockClick = true;
 
 			if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100)) {
                 
@@ -162,7 +162,6 @@ public class PlayerActor : NetworkBehaviour
 		}
     }
 
-    //Flicker Light for a server and clients
     [Command]
     void CmdLogMove()
     {
@@ -171,7 +170,6 @@ public class PlayerActor : NetworkBehaviour
 
     }
 
-    //Flicker Light for a server and clients
     [ClientRpc]
     void RpcLogMove()
     {
